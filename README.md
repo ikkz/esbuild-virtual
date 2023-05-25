@@ -1,5 +1,7 @@
 # Esbuild virtual plugin
 
+![npm](https://img.shields.io/npm/v/esbuild-virtual?style=flat-square)
+
 Load module from memory
 
 ## Install

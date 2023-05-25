@@ -1,5 +1,12 @@
 {
   "name": "esbuild-virtual",
+  "description": "Load module from memory",
+  "keywords": [
+    "esbuild",
+    "plugin"
+  ],
+  "homepage": "https://github.com/ikkz/esbuild-virtual",
+  "repository": "ikkz/esbuild-virtual",
   "version": "1.0.0",
   "jsnext:source": "./src/index.ts",
   "types": "./dist/types/index.d.ts",
