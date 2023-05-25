@@ -1,47 +1,62 @@
-# Modern.js Package
+# Esbuild virtual plugin
 
-## Setup
+Load module from memory
 
-Install the dependencies:
+## Install
 
 ```bash
-pnpm run install
+pnpm install -D esbuild-virtual
+yarn add -D esbuild-virtual
+npm install -D esbuild-virtual
 ```
 
-## Get Started
+## Import
 
-Run and debug the module:
-
-```
-pnpm run dev
-```
-
-Run test cases:
-
-```
-pnpm run test
+```js
+// esm
+import virtual from 'esbuild-virtual';
+// commonjs
+const { default: virtual } = require('esbuild-virtual');
 ```
 
-Build the module for production:
+## Usage
 
+```js
+// simple
+virtual({
+  modules: [
+    {
+      filter: /^MODULE_NAME$/,
+      result: `export default {};`,
+    },
+  ]
+})
+
+// specify loader
+virtual({
+  modules: [
+    {
+      filter: /^MODULE_NAME$/,
+      result: () => ({
+        contents: `export default {};`,
+        loader: 'ts'
+      }),
+    },
+  ]
+})
 ```
-pnpm run build
+
+## Options
+
+```ts
+interface Options {
+  modules: Module[];
+}
+
+interface Module {
+  // match import
+  filter: RegExp;
+  // see https://esbuild.github.io/plugins/#on-load-results
+  result: string | (() => Promise<Partial<OnLoadResult>>);
+}
 ```
-
-Enable optional features:
-
-```
-pnpm run new
-```
-
-Other commands:
-
-```
-pnpm run lint         # Lint and fix source files
-pnpm run change       # Add a new changeset
-pnpm run bump         # Update version and changelog via changeset
-pnpm run release      # Release the package
-
-```
-
-For more information, see the [Modern.js Module documentation](https://modernjs.dev/module-tools/en).
